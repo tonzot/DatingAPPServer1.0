@@ -19,30 +19,28 @@ public class CreateDatabase {
             Statement stmt = con.createStatement();
 
             // lösche die Tabelle, falls sie schon existiert
-            /*try {
-                stmt.execute("DROP TABLE test_person;");
+            try {
+                stmt.execute("DROP TABLE user;");
             } catch (Exception e){
                 System.out.println("Tabelle nicht gelöscht.");
-            }*/
+            }
 
             // Lege eine neue Tabelle (wirft Exception, falls Tabelle schon vorhanden)
             try {
                 stmt.execute("CREATE TABLE user (" +
-                        "uID int NOT NULL AUTO_INCREMENT," +
                         "benutzername varchar(255) NOT NULL," +
                         "passwort varchar(255) NOT NULL," +
                         "firstname varchar(255) NOT NULL," +
                         "lastname varchar(255) NOT NULL," +
-                        "age int NOT NULL," +
-                        "PRIMARY KEY (uID)" +
+                        "PRIMARY KEY (benutzername)" +
                         ");");
                 } catch (Exception e){
                     System.out.println("Keine neue Tabelle angelegt.");
             }
 
             // Lege ein paar Datensätze in der Tabelle an (primary key wird ausgelassen wg. auto-inkrement => heißt aber man kann Leute auch doppelt anlegen)
-            stmt.execute("INSERT INTO user (tonzot, 123, Haydar, Genc, 19) " +
-                    "VALUES ('Peter', 'Pan', 14);");
+            stmt.execute("INSERT INTO user (benutzername, passwort, firstname, lastname)" +
+                    "VALUES (tonzot, kl, tester, BOI);");
 
             // Gib die gesamte Tabelle test_person aus
             ResultSet results = stmt.executeQuery("SELECT * FROM user;");

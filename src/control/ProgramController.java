@@ -1,6 +1,7 @@
 package control;
 
 import control.framework.UIController;
+import model.CreateDatabase;
 import model.DatingServer;
 
 /**
@@ -29,6 +30,7 @@ public class ProgramController {
      * Diese Methode wird genau ein mal nach Programmstart aufgerufen.
      */
     public void startProgram(){
+        new CreateDatabase();
         DatingServer server = new DatingServer(500);
     }
 
